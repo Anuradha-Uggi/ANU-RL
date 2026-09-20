@@ -1,21 +1,8 @@
 
 # ANU-RL: A New Perspective on Weakly-Supervised Representation Learning for Visual Place Recognition
-Code for the TMLR 2026 paper [ANU-RL: A New Perspective on Weakly-Supervised Representation Learning for Visual Place Recognition](https://openreview.net/pdf?id=mXE4OP55il)
+Code for the TMLR 2026 paper [ANU-RL: A New Perspective on Weakly-Supervised Representation Learning for Visual Place Recognition](https://openreview.net/pdf?id=mXE4OP55il). Most code snippets are borrowed from [MixVPR](https://github.com/amaralibey/mixvpr), [BoQ](https://github.com/amaralibey/Bag-of-Queries), [MSim](https://github.com/msight-tech/research-ms-loss). 
 
 <img src="anu-rl-fig.png" width="100%" height="100%"> 
-
-### Performance compared with SOTA methods on CUB-200-2011
-
-|Rank@K | 1 | 2 | 4 | 8 | 16 | 32 |
- |:---  |:-:|:-:|:-:|:-:|:-: |:-: |
-|Clustering<sup>64</sup> | 48.2 | 61.4 | 71.8 | 81.9 | - | - |
-|ProxyNCA<sup>64</sup> | 49.2 | 61.9 | 67.9 | 72.4 | - | - |
-|Smart Mining<sup>64</sup> | 49.8 | 62.3 | 74.1 | 83.3 | - |
-|Our MS-Loss<sup>64</sup>| **57.4** |**69.8** |**80.0** |**87.8** |93.2 |96.4|
-|HTL<sup>512</sup> | 57.1| 68.8| 78.7| 86.5| 92.5| 95.5 | 
-|ABIER<sup>512</sup> |57.5 |68.7 |78.3 |86.2 |91.9 |95.5 |
-|Our MS-Loss<sup>512</sup>|**65.7** |**77.0** |**86.3**|**91.2** |**95.0** |**97.3**| 
-
 
 ### Prepare the data and the pretrained model 
 
