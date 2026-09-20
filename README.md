@@ -2,7 +2,7 @@
 # ANU-RL: A New Perspective on Weakly-Supervised Representation Learning for Visual Place Recognition
 Code for the TMLR 2026 paper [ANU-RL: A New Perspective on Weakly-Supervised Representation Learning for Visual Place Recognition](https://openreview.net/pdf?id=mXE4OP55il)
 
-<img src="anu-rl-fig.png" width="65%" height="65%"> 
+<img src="anu-rl-fig.png" width="85%" height="85%"> 
 
 ### Performance compared with SOTA methods on CUB-200-2011
 
