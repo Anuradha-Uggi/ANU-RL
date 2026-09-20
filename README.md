@@ -1,6 +1,6 @@
 
 # ANU-RL: A New Perspective on Weakly-Supervised Representation Learning for Visual Place Recognition
-Code for the TMLR 2026 paper [ANU-RL: A New Perspective on Weakly-Supervised Representation Learning for Visual Place Recognition](https://openreview.net/pdf?id=mXE4OP55il). Most code snippets are borrowed from [MixVPR](https://github.com/amaralibey/mixvpr), [BoQ](https://github.com/amaralibey/Bag-of-Queries), [MSim](https://github.com/msight-tech/research-ms-loss). 
+Code for the TMLR 2026 paper [ANU-RL: A New Perspective on Weakly-Supervised Representation Learning for Visual Place Recognition](https://openreview.net/pdf?id=mXE4OP55il). Most code snippets are sourced from [MixVPR](https://github.com/amaralibey/mixvpr), [BoQ](https://github.com/amaralibey/Bag-of-Queries), [MSim](https://github.com/msight-tech/research-ms-loss). 
 
 <img src="anu-rl-fig.png" width="100%" height="100%"> 
 
@@ -20,37 +20,38 @@ Download the imagenet pretrained model of
 
 ```bash
 pip install -r requirements.txt
-python setup.py develop build
 ```
-###  Train and Test on CUB200-2011 with MS-Loss
-
+###  Train and Test on CUB200-2011 with MS-Loss within ANU-RL framework
+## Train
 ```bash
-./scripts/run_cub.sh
+./image retrieval/scripts/run_cub.sh
 ```
 Trained models will be saved in the ./output/ folder if using the default config.
-
-Best recall@1 higher than 66 (65.7 in the paper).
+## Test
+```bash
+./image retrieval/validator.sh
+```
 
 ### Contact
 
-For any questions, please feel free to reach 
+For any questions, please feel free to reach out 
 ```
-github@malongtech.com
+ee21resch01008@iith.ac.in or sumohana@ee.iith.ac.in
 ```
 
 ### Citation
 
-If you use this method or this code in your research, please cite as:
+If you use our ANU-RL in your research, please cite as:
 
-    @inproceedings{wang2019multi,
-    title={Multi-Similarity Loss with General Pair Weighting for Deep Metric Learning},
-    author={Wang, Xun and Han, Xintong and Huang, Weilin and Dong, Dengke and Scott, Matthew R},
-    booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
-    pages={5022--5030},
-    year={2019}
-    }
+@article{
+uggi2026anurl,
+title={{ANU}-{RL}: A New Perspective on Weakly-Supervised Representation Learning for Visual Place Recognition},
+author={Anuradha Uggi and Sumohana S. Channappayya},
+journal={Transactions on Machine Learning Research},
+issn={2835-8856},
+year={2026},
+url={https://openreview.net/forum?id=mXE4OP55il},
+note={}
+}
 
-## License
-
-MS-Loss is CC-BY-NC 4.0 licensed, as found in the [LICENSE](LICENSE) file. It is released for academic research / non-commercial use only. If you wish to use for commercial purposes, please contact sales@malongtech.com.
 
