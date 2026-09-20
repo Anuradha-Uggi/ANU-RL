@@ -42,7 +42,7 @@ ee21resch01008@iith.ac.in or sumohana@ee.iith.ac.in
 ### Citation
 
 If you use our ANU-RL in your research, please cite as:
-
+```
 @article{
 uggi2026anurl,
 title={{ANU}-{RL}: A New Perspective on Weakly-Supervised Representation Learning for Visual Place Recognition},
@@ -53,5 +53,5 @@ year={2026},
 url={https://openreview.net/forum?id=mXE4OP55il},
 note={}
 }
-
+```
 
