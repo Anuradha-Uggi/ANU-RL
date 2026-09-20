@@ -1,0 +1,302 @@
+2025-11-12 18:48:39,365 Train INFO: DATA:
+  NUM_INSTANCES: 5
+  NUM_WORKERS: 8
+  TEST_BATCHSIZE: 256
+  TEST_IMG_SOURCE: resource/datasets/deepfashion-inshop-clothes-retrieval/test_labels.txt
+  TRAIN_BATCHSIZE: 80
+  TRAIN_IMG_SOURCE: resource/datasets/deepfashion-inshop-clothes-retrieval/train_labels.txt
+INPUT:
+  CROP_SCALE: [0.16, 1]
+  CROP_SIZE: 227
+  FLIP_PROB: 0.5
+  MODE: BGR
+  ORIGIN_SIZE: 256
+  PIXEL_MEAN: [0.40784313725490196, 0.4588235294117647, 0.5019607843137255]
+  PIXEL_STD: [0.00392156862745098, 0.00392156862745098, 0.00392156862745098]
+LOGGER:
+  LEVEL: 20
+  STREAM: stdout
+LOSSES:
+  ANU_MULTI_SIMILARITY_LOSS:
+    HARD_MINING: True
+    SCALE_NEG: 40.0
+    SCALE_POS: 2.0
+  ANU_TRIPLET_LOSS:
+    
+  MARGIN_LOSS:
+    BETA_CONSTANT: False
+    CUTOFF: 0.5
+    N_CLASSES: 100
+    UPPER_CUTOFF: 1.4
+  MULTI_SIMILARITY_LOSS:
+    HARD_MINING: True
+    SCALE_NEG: 40.0
+    SCALE_POS: 2.0
+  NAME: triplet_loss
+  REG_LAMBDA: 1.0
+  TRIPLET_LOSS:
+    
+MODEL:
+  BACKBONE:
+    NAME: bninception
+  DEVICE: cuda
+  HEAD:
+    DIM: 512
+    NAME: linear_norm
+  PRETRAIN: imagenet
+  PRETRAINED_PATH:
+    bninception: ~/.torch/models/bn_inception-52deb4733.pth
+    resnet50: ~/.torch/models/resnet50-19c8e357.pth
+  WEIGHT: 
+SAVE_DIR: inshop_triplet_loss_bl/run_1
+SOLVER:
+  BASE_LR: 3e-05
+  BIAS_LR_FACTOR: 1
+  CHECKPOINT_PERIOD: 200
+  FINETURN_MODE_PATH: 
+  GAMMA: 0.1
+  IS_FINETURN: False
+  MAX_ITERS: 3000
+  MOMENTUM: 0.9
+  OPTIMIZER_NAME: Adam
+  RNG_SEED: 1
+  STEPS: [1200, 2400]
+  WARMUP_FACTOR: 0.01
+  WARMUP_ITERS: 0
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0005
+  WEIGHT_DECAY_BIAS: 0.0005
+VALIDATION:
+  IS_VALIDATION: True
+  VERBOSE: 200
+Loading imagenet pretrianed model ...
+2025-11-12 18:48:40,385 Train INFO: | Dataset Info |datasize: 25882|num_labels: 3997|
+2025-11-12 18:48:40,386 Train INFO: | Dataset Info |datasize: 26830|num_labels: 3985|
+printing model for IR:
+ Sequential(
+  (backbone): BNInception(
+    (conv1_7x7_s2): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3))
+    (conv1_7x7_s2_bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (conv1_relu_7x7): ReLU(inplace=True)
+    (pool1_3x3_s2): MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=0, dilation=(1, 1), ceil_mode=True)
+    (conv2_3x3_reduce): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+    (conv2_3x3_reduce_bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (conv2_relu_3x3_reduce): ReLU(inplace=True)
+    (conv2_3x3): Conv2d(64, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (conv2_3x3_bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (conv2_relu_3x3): ReLU(inplace=True)
+    (pool2_3x3_s2): MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=0, dilation=(1, 1), ceil_mode=True)
+    (inception_3a_1x1): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1))
+    (inception_3a_1x1_bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3a_relu_1x1): ReLU(inplace=True)
+    (inception_3a_3x3_reduce): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1))
+    (inception_3a_3x3_reduce_bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3a_relu_3x3_reduce): ReLU(inplace=True)
+    (inception_3a_3x3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_3a_3x3_bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3a_relu_3x3): ReLU(inplace=True)
+    (inception_3a_double_3x3_reduce): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1))
+    (inception_3a_double_3x3_reduce_bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3a_relu_double_3x3_reduce): ReLU(inplace=True)
+    (inception_3a_double_3x3_1): Conv2d(64, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_3a_double_3x3_1_bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3a_relu_double_3x3_1): ReLU(inplace=True)
+    (inception_3a_double_3x3_2): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_3a_double_3x3_2_bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3a_relu_double_3x3_2): ReLU(inplace=True)
+    (inception_3a_pool): AvgPool2d(kernel_size=3, stride=1, padding=1)
+    (inception_3a_pool_proj): Conv2d(192, 32, kernel_size=(1, 1), stride=(1, 1))
+    (inception_3a_pool_proj_bn): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3a_relu_pool_proj): ReLU(inplace=True)
+    (inception_3b_1x1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1))
+    (inception_3b_1x1_bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3b_relu_1x1): ReLU(inplace=True)
+    (inception_3b_3x3_reduce): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1))
+    (inception_3b_3x3_reduce_bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3b_relu_3x3_reduce): ReLU(inplace=True)
+    (inception_3b_3x3): Conv2d(64, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_3b_3x3_bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3b_relu_3x3): ReLU(inplace=True)
+    (inception_3b_double_3x3_reduce): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1))
+    (inception_3b_double_3x3_reduce_bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3b_relu_double_3x3_reduce): ReLU(inplace=True)
+    (inception_3b_double_3x3_1): Conv2d(64, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_3b_double_3x3_1_bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3b_relu_double_3x3_1): ReLU(inplace=True)
+    (inception_3b_double_3x3_2): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_3b_double_3x3_2_bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3b_relu_double_3x3_2): ReLU(inplace=True)
+    (inception_3b_pool): AvgPool2d(kernel_size=3, stride=1, padding=1)
+    (inception_3b_pool_proj): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1))
+    (inception_3b_pool_proj_bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3b_relu_pool_proj): ReLU(inplace=True)
+    (inception_3c_3x3_reduce): Conv2d(320, 128, kernel_size=(1, 1), stride=(1, 1))
+    (inception_3c_3x3_reduce_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3c_relu_3x3_reduce): ReLU(inplace=True)
+    (inception_3c_3x3): Conv2d(128, 160, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (inception_3c_3x3_bn): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3c_relu_3x3): ReLU(inplace=True)
+    (inception_3c_double_3x3_reduce): Conv2d(320, 64, kernel_size=(1, 1), stride=(1, 1))
+    (inception_3c_double_3x3_reduce_bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3c_relu_double_3x3_reduce): ReLU(inplace=True)
+    (inception_3c_double_3x3_1): Conv2d(64, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_3c_double_3x3_1_bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3c_relu_double_3x3_1): ReLU(inplace=True)
+    (inception_3c_double_3x3_2): Conv2d(96, 96, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (inception_3c_double_3x3_2_bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_3c_relu_double_3x3_2): ReLU(inplace=True)
+    (inception_3c_pool): MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=0, dilation=(1, 1), ceil_mode=True)
+    (inception_4a_1x1): Conv2d(576, 224, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4a_1x1_bn): BatchNorm2d(224, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4a_relu_1x1): ReLU(inplace=True)
+    (inception_4a_3x3_reduce): Conv2d(576, 64, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4a_3x3_reduce_bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4a_relu_3x3_reduce): ReLU(inplace=True)
+    (inception_4a_3x3): Conv2d(64, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_4a_3x3_bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4a_relu_3x3): ReLU(inplace=True)
+    (inception_4a_double_3x3_reduce): Conv2d(576, 96, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4a_double_3x3_reduce_bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4a_relu_double_3x3_reduce): ReLU(inplace=True)
+    (inception_4a_double_3x3_1): Conv2d(96, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_4a_double_3x3_1_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4a_relu_double_3x3_1): ReLU(inplace=True)
+    (inception_4a_double_3x3_2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_4a_double_3x3_2_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4a_relu_double_3x3_2): ReLU(inplace=True)
+    (inception_4a_pool): AvgPool2d(kernel_size=3, stride=1, padding=1)
+    (inception_4a_pool_proj): Conv2d(576, 128, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4a_pool_proj_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4a_relu_pool_proj): ReLU(inplace=True)
+    (inception_4b_1x1): Conv2d(576, 192, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4b_1x1_bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4b_relu_1x1): ReLU(inplace=True)
+    (inception_4b_3x3_reduce): Conv2d(576, 96, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4b_3x3_reduce_bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4b_relu_3x3_reduce): ReLU(inplace=True)
+    (inception_4b_3x3): Conv2d(96, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_4b_3x3_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4b_relu_3x3): ReLU(inplace=True)
+    (inception_4b_double_3x3_reduce): Conv2d(576, 96, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4b_double_3x3_reduce_bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4b_relu_double_3x3_reduce): ReLU(inplace=True)
+    (inception_4b_double_3x3_1): Conv2d(96, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_4b_double_3x3_1_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4b_relu_double_3x3_1): ReLU(inplace=True)
+    (inception_4b_double_3x3_2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_4b_double_3x3_2_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4b_relu_double_3x3_2): ReLU(inplace=True)
+    (inception_4b_pool): AvgPool2d(kernel_size=3, stride=1, padding=1)
+    (inception_4b_pool_proj): Conv2d(576, 128, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4b_pool_proj_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4b_relu_pool_proj): ReLU(inplace=True)
+    (inception_4c_1x1): Conv2d(576, 160, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4c_1x1_bn): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4c_relu_1x1): ReLU(inplace=True)
+    (inception_4c_3x3_reduce): Conv2d(576, 128, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4c_3x3_reduce_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4c_relu_3x3_reduce): ReLU(inplace=True)
+    (inception_4c_3x3): Conv2d(128, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_4c_3x3_bn): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4c_relu_3x3): ReLU(inplace=True)
+    (inception_4c_double_3x3_reduce): Conv2d(576, 128, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4c_double_3x3_reduce_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4c_relu_double_3x3_reduce): ReLU(inplace=True)
+    (inception_4c_double_3x3_1): Conv2d(128, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_4c_double_3x3_1_bn): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4c_relu_double_3x3_1): ReLU(inplace=True)
+    (inception_4c_double_3x3_2): Conv2d(160, 160, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_4c_double_3x3_2_bn): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4c_relu_double_3x3_2): ReLU(inplace=True)
+    (inception_4c_pool): AvgPool2d(kernel_size=3, stride=1, padding=1)
+    (inception_4c_pool_proj): Conv2d(576, 128, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4c_pool_proj_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4c_relu_pool_proj): ReLU(inplace=True)
+    (inception_4d_1x1): Conv2d(608, 96, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4d_1x1_bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4d_relu_1x1): ReLU(inplace=True)
+    (inception_4d_3x3_reduce): Conv2d(608, 128, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4d_3x3_reduce_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4d_relu_3x3_reduce): ReLU(inplace=True)
+    (inception_4d_3x3): Conv2d(128, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_4d_3x3_bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4d_relu_3x3): ReLU(inplace=True)
+    (inception_4d_double_3x3_reduce): Conv2d(608, 160, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4d_double_3x3_reduce_bn): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4d_relu_double_3x3_reduce): ReLU(inplace=True)
+    (inception_4d_double_3x3_1): Conv2d(160, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_4d_double_3x3_1_bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4d_relu_double_3x3_1): ReLU(inplace=True)
+    (inception_4d_double_3x3_2): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_4d_double_3x3_2_bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4d_relu_double_3x3_2): ReLU(inplace=True)
+    (inception_4d_pool): AvgPool2d(kernel_size=3, stride=1, padding=1)
+    (inception_4d_pool_proj): Conv2d(608, 128, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4d_pool_proj_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4d_relu_pool_proj): ReLU(inplace=True)
+    (inception_4e_3x3_reduce): Conv2d(608, 128, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4e_3x3_reduce_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4e_relu_3x3_reduce): ReLU(inplace=True)
+    (inception_4e_3x3): Conv2d(128, 192, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (inception_4e_3x3_bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4e_relu_3x3): ReLU(inplace=True)
+    (inception_4e_double_3x3_reduce): Conv2d(608, 192, kernel_size=(1, 1), stride=(1, 1))
+    (inception_4e_double_3x3_reduce_bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4e_relu_double_3x3_reduce): ReLU(inplace=True)
+    (inception_4e_double_3x3_1): Conv2d(192, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_4e_double_3x3_1_bn): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4e_relu_double_3x3_1): ReLU(inplace=True)
+    (inception_4e_double_3x3_2): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (inception_4e_double_3x3_2_bn): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_4e_relu_double_3x3_2): ReLU(inplace=True)
+    (inception_4e_pool): MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=0, dilation=(1, 1), ceil_mode=True)
+    (inception_5a_1x1): Conv2d(1056, 352, kernel_size=(1, 1), stride=(1, 1))
+    (inception_5a_1x1_bn): BatchNorm2d(352, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_5a_relu_1x1): ReLU(inplace=True)
+    (inception_5a_3x3_reduce): Conv2d(1056, 192, kernel_size=(1, 1), stride=(1, 1))
+    (inception_5a_3x3_reduce_bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_5a_relu_3x3_reduce): ReLU(inplace=True)
+    (inception_5a_3x3): Conv2d(192, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_5a_3x3_bn): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_5a_relu_3x3): ReLU(inplace=True)
+    (inception_5a_double_3x3_reduce): Conv2d(1056, 160, kernel_size=(1, 1), stride=(1, 1))
+    (inception_5a_double_3x3_reduce_bn): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_5a_relu_double_3x3_reduce): ReLU(inplace=True)
+    (inception_5a_double_3x3_1): Conv2d(160, 224, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_5a_double_3x3_1_bn): BatchNorm2d(224, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_5a_relu_double_3x3_1): ReLU(inplace=True)
+    (inception_5a_double_3x3_2): Conv2d(224, 224, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_5a_double_3x3_2_bn): BatchNorm2d(224, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_5a_relu_double_3x3_2): ReLU(inplace=True)
+    (inception_5a_pool): AvgPool2d(kernel_size=3, stride=1, padding=1)
+    (inception_5a_pool_proj): Conv2d(1056, 128, kernel_size=(1, 1), stride=(1, 1))
+    (inception_5a_pool_proj_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_5a_relu_pool_proj): ReLU(inplace=True)
+    (inception_5b_1x1): Conv2d(1024, 352, kernel_size=(1, 1), stride=(1, 1))
+    (inception_5b_1x1_bn): BatchNorm2d(352, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_5b_relu_1x1): ReLU(inplace=True)
+    (inception_5b_3x3_reduce): Conv2d(1024, 192, kernel_size=(1, 1), stride=(1, 1))
+    (inception_5b_3x3_reduce_bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_5b_relu_3x3_reduce): ReLU(inplace=True)
+    (inception_5b_3x3): Conv2d(192, 320, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_5b_3x3_bn): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_5b_relu_3x3): ReLU(inplace=True)
+    (inception_5b_double_3x3_reduce): Conv2d(1024, 192, kernel_size=(1, 1), stride=(1, 1))
+    (inception_5b_double_3x3_reduce_bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_5b_relu_double_3x3_reduce): ReLU(inplace=True)
+    (inception_5b_double_3x3_1): Conv2d(192, 224, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_5b_double_3x3_1_bn): BatchNorm2d(224, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_5b_relu_double_3x3_1): ReLU(inplace=True)
+    (inception_5b_double_3x3_2): Conv2d(224, 224, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (inception_5b_double_3x3_2_bn): BatchNorm2d(224, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_5b_relu_double_3x3_2): ReLU(inplace=True)
+    (inception_5b_pool): MaxPool2d(kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), dilation=(1, 1), ceil_mode=True)
+    (inception_5b_pool_proj): Conv2d(1024, 128, kernel_size=(1, 1), stride=(1, 1))
+    (inception_5b_pool_proj_bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (inception_5b_relu_pool_proj): ReLU(inplace=True)
+  )
+  (head): LinearNorm(
+    (fc): Linear(in_features=1024, out_features=512, bias=True)
+  )
+)
+

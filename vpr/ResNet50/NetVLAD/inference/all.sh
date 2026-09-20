@@ -1,0 +1,4 @@
+sh feature_extract_match_datasets2_anu_all_pairs.sh
+sh feature_extract_match_datasets2_anu_easiest_pairs.sh
+sh feature_extract_match_datasets2_anu_hardest_pairs.sh
+sh feature_extract_match_datasets2_bl.sh

@@ -1,0 +1,48 @@
+Information
+===========
+
+This is the Online Products dataset in [1] for metric learning.
+These images are collected from eBay using its provided API: https://go.developer.ebay.com/what-ebay-api
+
+For questions concerning the benchmark, please contact Yu Xiang at <yuxiang AT umich DOT edu>.
+
+How to Cite
+===========
+
+@inproceedings{song2016deep,
+  author    = {Song, Hyun Oh and Xiang, Yu and Jegelka, Stefanie and Savarese, Silvio},
+  title     = {Deep Metric Learning via Lifted Structured Feature Embedding},
+  booktitle = {IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2016}
+}
+
+
+Basic Usage
+===========
+
+There are 12 categories of products in this dataset: bicycle, cabinet, chair, coffee maker, fan, kettle, lamp, mug, sofa, stapler, table and toaster.
+
+Images: images are stored in the directories named "cls_final" (e.g., bicycle_final, chair_final), where "cls" is the category name.
+
+Image name format: each image is named by "itemID_index.JPG", where "itemID" is the product ID from eBay for the product, "index" start from 0 which
+    indexes different images of the same product.
+
+cls_final.txt: these text files store the image names of the "cls" category (e.g., bicycle_final.txt, chair_final.txt).
+
+Ebay_final.txt: it stores all the image names for all the categories.
+
+Ebay_info.txt: it contains the information about the whole dataset. Each line in the file contains "image_id class_id super_class_id path".
+   image_id: index of the image (1 ~ 120,053). We have 120,053 images in the dataset in total.
+   class_id: index of the item  (1 ~ 22,634). We have 22,634 items/products in the dataset in total.
+   super_class_id: index of the category (1 ~ 12). We have 12 categories in the dataset in total.
+   path: path of the image.
+
+Ebay_train.txt: the training set we used in [1]. It has the same format as "Ebay_info.txt".
+
+Ebay_test.txt: the test set we used in [1]. It has the same format as "Ebay_info.txt".
+
+References
+==========
+
+[1] H.O. Song, Y. Xiang, S. Jegelka, and S. Savarese.
+Deep Metric Learning via Lifted Structured Feature Embedding. In CVPR, 2016.

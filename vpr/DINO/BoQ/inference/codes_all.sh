@@ -1,0 +1,9 @@
+#sh feature_extract_match_anu_all_pairs_seed2.sh
+#sh feature_extract_match_datasets2_anu_all_pairs_seed2.sh
+
+#sh feature_extract_match_anu_all_pairs_seed3.sh
+#sh feature_extract_match_datasets2_anu_all_pairs_seed3.sh
+
+sh feature_extract_match_anu_all_pairs.sh
+sh feature_extract_match_anu_easiest_pairs.sh
+sh feature_extract_match_bl.sh
