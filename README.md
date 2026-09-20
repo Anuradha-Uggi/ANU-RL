@@ -1,9 +1,6 @@
-[![License: CC BY-NC 4.0](https://licensebuttons.net/l/by-nc/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc/4.0/)
-#https://data.lip6.fr/cadene/pretrainedmodels/
 
-# Multi-Similarity Loss for Deep Metric Learning (MS-Loss)
-
-Code for the CVPR 2019 paper [Multi-Similarity Loss with General Pair Weighting for Deep Metric Learning](http://openaccess.thecvf.com/content_CVPR_2019/papers/Wang_Multi-Similarity_Loss_With_General_Pair_Weighting_for_Deep_Metric_Learning_CVPR_2019_paper.pdf)
+# ANU-RL: A New Perspective on Weakly-Supervised Representation Learning for Visual Place Recognition
+Code for the TMLR 2026 paper [ANU-RL: A New Perspective on Weakly-Supervised Representation Learning for Visual Place Recognition](https://openreview.net/pdf?id=mXE4OP55il)
 
 <img src="misc/ms_loss.png" width="65%" height="65%"> 
 
